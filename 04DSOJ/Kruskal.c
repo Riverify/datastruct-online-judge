@@ -3,35 +3,35 @@
 #include<stdio.h>
 #include<stdlib.h>
 #define MAXVEX 16   
-typedef char VexType;                     /*¶¥µãµÄÊý¾ÝÀàÐÍ*/
-typedef int AdjType;            /*ÁÚ½Ó¾ØÕóµÄÊý¾ÝÔªËØµÄÀàÐÍ*/
+typedef char VexType;                     /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+typedef int AdjType;            /*ï¿½Ú½Ó¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½*/
 typedef struct
 {
-	VexType vexs[MAXVEX];				//¶¥µã
-	AdjType arcs[MAXVEX][MAXVEX];		//ÁÚ½Ó¾ØÕó
-	int n;								//¼ÇÂ¼µ±Ç°Í¼µÄ¶¥µãÊý
-	int e; //±ßÊý 
+	VexType vexs[MAXVEX];				//ï¿½ï¿½ï¿½ï¿½
+	AdjType arcs[MAXVEX][MAXVEX];		//ï¿½Ú½Ó¾ï¿½ï¿½ï¿½
+	int n;								//ï¿½ï¿½Â¼ï¿½ï¿½Ç°Í¼ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	int e; //ï¿½ï¿½ï¿½ï¿½ 
 }GraphMatrix;
 
 typedef struct treedata {
-      char beg,en;   	/* beg,enÊÇ½áµãÐòºÅ */
-      int length;     	/* ±ß³¤ */
+      char beg,en;   	/* beg,enï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+      int length;     	/* ï¿½ß³ï¿½ */
 }edge;
 
 
 
-GraphMatrix* CreateGraph(void)			//´´½¨ÎÞÏò´øÈ¨Í¼
+GraphMatrix* CreateGraph(void)			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨Í¼
 {
 	int i,j,k,e,m;
 	GraphMatrix *ga;
 	ga=(GraphMatrix *)malloc(sizeof(GraphMatrix));
-	printf("ÇëÊäÈë¶¥µãµÄ¸öÊý(²»³¬¹ý%d):",MAXVEX);
+	printf("ï¿½ï¿½ï¿½ï¿½ï¿½ë¶¥ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½%d):",MAXVEX);
 	scanf("%d",&(ga->n));
 	getchar();
 
-	printf("ÇëË³ÐòµØÊäÈë¸÷¶¥µãµÄÐÅÏ¢(ÐòºÅ¼´¿É,ÓÃÒ»¸ö×Ö·û±íÊ¾):\n");
+	printf("ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢(ï¿½ï¿½Å¼ï¿½ï¿½ï¿½,ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½Ê¾):\n");
 	for(i=0; i<ga->n; i++)
-		ga->vexs[i]=getchar();     /*¶ÁÈë¶¥µãÐÅÏ¢£¬½¨Á¢¶¥µã±í*/
+		ga->vexs[i]=getchar();     /*ï¿½ï¿½ï¿½ë¶¥ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	getchar();
 	for(i=0; i<ga->n; i++)
 		for(j=0; j<ga->n; j++){
@@ -41,14 +41,14 @@ GraphMatrix* CreateGraph(void)			//´´½¨ÎÞÏò´øÈ¨Í¼
 				ga->arcs[i][j]=999;
 			}
 		}
-			                /*ÁÚ½Ó¾ØÕó³õÊ¼»¯*/
-	printf("ÇëÊäÈë±ßµÄ¸öÊý:");
+			                /*ï¿½Ú½Ó¾ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½*/
+	printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ßµÄ¸ï¿½ï¿½ï¿½:");
 	scanf("%d",&e);
 	ga->e = e;
-	printf("ÇëÊäÈëÓë±ßÏà¹ØÁªµÄÁ½¸ö¶¥µãµÄÐòºÅ:\n");
+	printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:\n");
 	for(k=0;k<e;k++)
 	{
-		scanf("%d%d%d",&i,&j,&m);                         /*¶ÁÈë±ßÒÔ¼°È¨Öµ*/
+		scanf("%d%d%d",&i,&j,&m);                         /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½È¨Öµ*/
 		ga->arcs[i][j]=m;
 		ga->arcs[j][i]=m;
 	}
@@ -61,10 +61,10 @@ GraphMatrix* CreateGraph(void)			//´´½¨ÎÞÏò´øÈ¨Í¼
 void PrintGraph(GraphMatrix *ga)
 {
 	int i,j;
-	printf("\n¶¥µã±íÎª:\n");
+	printf("\nï¿½ï¿½ï¿½ï¿½ï¿½Îª:\n");
 	for(i=0; i<ga->n; i++)
 		printf("%4c",ga->vexs[i]);
-	printf("\nÁÚ½Ó¾ØÕóÎª:\n");
+	printf("\nï¿½Ú½Ó¾ï¿½ï¿½ï¿½Îª:\n");
 	for(i=0; i<ga->n; i++)
 	{
 		for(j=0; j<ga->n; j++)
@@ -80,7 +80,7 @@ int cmp(const void *a, const void *b)
 }
 
 void kruskal(GraphMatrix *ga) {
-	// ÁÚ½Ó¾ØÕóµ½ edge[] 
+	// ï¿½Ú½Ó¾ï¿½ï¿½ï¿½ edge[] 
 	edge arr[MAXVEX];
 	int i=0,j;
 	
@@ -96,28 +96,28 @@ void kruskal(GraphMatrix *ga) {
 		}
 	}
 	
-	// arr[] ¸ù¾Ýarr[].length ÅÅÐò ´ÓÐ¡µ½´ó£¡
+	// arr[] ï¿½ï¿½ï¿½ï¿½arr[].length ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½
 	
 	for(i=0;i<ga->e;i++) {
 		printf("%c -> %c ÖµÎª %d \n",ga->vexs[arr[i].beg],ga->vexs[arr[i].en],arr[i].length);
 	}
 	
-	printf("¸ù¾Ýlength ÅÅÐòºó:\n");
+	printf("ï¿½ï¿½ï¿½ï¿½length ï¿½ï¿½ï¿½ï¿½ï¿½:\n");
 	
 	qsort(arr, ga->e, sizeof(edge), cmp);
 	
 	for(i=0;i<ga->e;i++) {
 		printf("%c -> %c ÖµÎª %d \n",ga->vexs[arr[i].beg],ga->vexs[arr[i].en],arr[i].length);
 	}
-	// 2. É¸Ñ¡×îÐ¡±ß ÅÐ¶ÏÊÇ·ñÊÇ»ØÂ·¡£
+	// 2. É¸Ñ¡ï¿½ï¿½Ð¡ï¿½ï¿½ ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½Ç»ï¿½Â·ï¿½ï¿½
 	
 	int e_flag = 0;
-	// Èç¹û±ßÊýÎª (¶¥µãÊý-1) Ôò²»ÔÙÑ°ÕÒ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-1) ï¿½ï¿½ï¿½ï¿½Ñ°ï¿½ï¿½
 	
 	int end_index=0;
 	int ends[ga->n];
 	ends[end_index] = arr[0].en;
-	printf("%cµ½%c\n",ga->vexs[arr[0].beg],ga->vexs[arr[0].en]);
+	printf("%cï¿½ï¿½%c\n",ga->vexs[arr[0].beg],ga->vexs[arr[0].en]);
 	e_flag++;
 
 	for(i=1;i<ga->e;i++) {
@@ -125,7 +125,7 @@ void kruskal(GraphMatrix *ga) {
 		int flag;
 		for(j=0;j<=end_index;j++) {
 			flag=0;
-			// Èç¹ûÖ®Ç°×ß¹ýÕâ¸öµã £¨ÐÎ³É»ØÂ· ÔòÌø¹ýÕâÌõ±ß£© 
+			// ï¿½ï¿½ï¿½Ö®Ç°ï¿½ß¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î³É»ï¿½Â· ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½ 
 			if (arr[i].en == ends[j]) {
 				flag =1;
 				break;
@@ -134,9 +134,9 @@ void kruskal(GraphMatrix *ga) {
 		if(flag==0) {
 			ends[++end_index] = arr[i].en;
 			e_flag++;
-			printf("%cµ½%c\n",ga->vexs[arr[i].beg],ga->vexs[arr[i].en]);
+			printf("%cï¿½ï¿½%c\n",ga->vexs[arr[i].beg],ga->vexs[arr[i].en]);
 		}
-		// ±ßÊýÎª (¶¥µãÊý-1) Ôò²»ÔÙÑ°ÕÒ
+		// ï¿½ï¿½ï¿½ï¿½Îª (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-1) ï¿½ï¿½ï¿½ï¿½Ñ°ï¿½ï¿½
 		if(e_flag == ga->n-1) {
 			break;
 		}
